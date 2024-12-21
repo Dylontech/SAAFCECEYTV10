@@ -3,24 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Models\Usuarios;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
-
     use RegistersUsers;
 
     /**
@@ -50,8 +39,16 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'User_name' => ['required', 'string', 'max:255', 'unique:usuarios'],
+            'User_tipo' => ['required', 'string', 'max:255'],
+            'User_pass' => ['required', 'string', 'min:8', 'confirmed'],
+        ], [
+            'name.required' => 'El nombre es obligatorio.',
+            'User_name.required' => 'El nombre de usuario es obligatorio.',
+            'User_name.unique' => 'Este nombre de usuario ya está en uso.',
+            'User_tipo.required' => 'El tipo de usuario es obligatorio.',
+            'User_pass.required' => 'La contraseña es obligatoria.',
+            'User_pass.confirmed' => 'Las contraseñas no coinciden.',
         ]);
     }
 
@@ -59,14 +56,15 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\Models\User
+     * @return \App\Models\Usuarios
      */
     protected function create(array $data)
     {
-        return User::create([
+        return Usuarios::create([
             'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'User_name' => $data['User_name'],
+            'User_tipo' => $data['User_tipo'],
+            'User_pass' => Hash::make($data['User_pass']),
         ]);
     }
 }

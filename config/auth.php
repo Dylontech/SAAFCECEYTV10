@@ -15,7 +15,7 @@ return [
 
     'defaults' => [
         'guard' => 'web',
-        'passwords' => 'users',
+        'passwords' => 'usuarios',
     ],
     
 
@@ -39,11 +39,11 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'usuarios',  // Esto es para la tabla 'users', puedes dejarlo como está si lo necesitas.
         ],
         'usuarios' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'usuarios',  // Asegúrate de que 'usuarios' esté bien configurado
         ],
     ],
 
@@ -65,14 +65,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
-        'usuarios' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Usuarios::class,
-        ],
+    'usuarios' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Usuarios::class,
+    ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -100,8 +96,8 @@ return [
     */
 
     'passwords' => [
-        'users' => [
-            'provider' => 'users',
+        'usuarios' => [
+            'provider' => 'usuarios',
             'table' => 'password_reset_tokens',
             'expire' => 60,
             'throttle' => 60,

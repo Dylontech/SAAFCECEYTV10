@@ -7,25 +7,39 @@
                 <img src="{{asset(config('tablar.auth_logo.img.path','assets/logo.svg'))}}" height="36" alt="Logo">
             </a>
         </div>
-        <form class="card card-md" action="{{route('register')}}" method="post" autocomplete="off" novalidate>
+        <form class="card card-md" action="{{ route('register') }}" method="post" autocomplete="off" novalidate>
             @csrf
             <div class="card-body">
                 <h2 class="card-title text-center mb-4">Crear una cuenta nueva</h2>
                 
                 <!-- Nombre -->
                 <div class="mb-3">
-                    <label class="form-label">Nombre</label>
-                    <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Introduce tu nombre">
-                    @error('name')
+                      <label class="form-label">Nombre</label>
+                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" placeholder="Introduce tu nombre" value="{{ old('name') }}">
+                      @error('name')
+                       <div class="invalid-feedback">{{ $message }}</div>
+                          @enderror
+                </div>
+                <!-- Nombre de usuario -->
+                <div class="mb-3">
+                    <label class="form-label">Nombre de usuario</label>
+                    <input type="text" name="User_name" class="form-control @error('User_name') is-invalid @enderror" placeholder="Introduce un nombre de usuario" value="{{ old('User_name') }}">
+                    @error('User_name')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
 
-                <!-- Nombre de usuario -->
+                <!-- Tipo de usuario -->
                 <div class="mb-3">
-                    <label class="form-label">Nombre de usuario</label>
-                    <input type="text" name="username" class="form-control @error('username') is-invalid @enderror" placeholder="Introduce un nombre de usuario">
-                    @error('username')
+                    <label class="form-label">Tipo de usuario</label>
+                    <select name="User_tipo" class="form-select @error('User_tipo') is-invalid @enderror">
+                        <option value="">Selecciona un tipo de usuario</option>
+                        <option value="admin" {{ old('User_tipo') == 'admin' ? 'selected' : '' }}>Administrador</option>
+                        <option value="control_escolar" {{ old('User_tipo') == 'control_escolar' ? 'selected' : '' }}>Control Escolar</option>
+                        <option value="financiero" {{ old('User_tipo') == 'financiero' ? 'selected' : '' }}>Departamento Financiero</option>
+                        <option value="alumno" {{ old('User_tipo') == 'alumno' ? 'selected' : '' }}>Alumno</option>
+                    </select>
+                    @error('User_tipo')
                     <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
@@ -34,7 +48,7 @@
                 <div class="mb-3">
                     <label class="form-label">Contraseña</label>
                     <div class="input-group input-group-flat">
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Introduce tu contraseña" autocomplete="off">
+                        <input type="password" name="User_pass" class="form-control @error('User_pass') is-invalid @enderror" placeholder="Introduce tu contraseña" autocomplete="off">
                         <span class="input-group-text">
                             <a href="#" class="link-secondary" title="Mostrar contraseña" data-bs-toggle="tooltip">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -44,7 +58,7 @@
                                 </svg>
                             </a>
                         </span>
-                        @error('password')
+                        @error('User_pass')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
@@ -54,7 +68,7 @@
                 <div class="mb-3">
                     <label class="form-label">Confirmar contraseña</label>
                     <div class="input-group input-group-flat">
-                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" placeholder="Confirmar contraseña" autocomplete="off">
+                        <input type="password" name="User_pass_confirmation" class="form-control @error('User_pass_confirmation') is-invalid @enderror" placeholder="Confirmar contraseña" autocomplete="off">
                         <span class="input-group-text">
                             <a href="#" class="link-secondary" title="Mostrar contraseña" data-bs-toggle="tooltip">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -64,7 +78,7 @@
                                 </svg>
                             </a>
                         </span>
-                        @error('password_confirmation')
+                        @error('User_pass_confirmation')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>

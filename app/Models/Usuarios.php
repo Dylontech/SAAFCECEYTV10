@@ -2,25 +2,28 @@
 
 namespace App\Models;
 
-use Illuminate\Database\DBAL\TimestampType;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Usuarios extends Model
+class Usuarios extends Authenticatable
 {
-    use HasFactory;
+    use Notifiable;
+
     protected $table = 'usuarios';
-protected $fillable = [
-    'User_name',
-    'User_pass',
-    'User_tipo',
-];
-protected $hidden = [
-    'user_pass',
-];
-public function getAuthPassword()
-{
-    return $this->User_pass;
+
+    protected $fillable = [
+        'name',
+        'User_name',
+        'User_pass',
+        'User_tipo',
+    ];
+
+    protected $hidden = [
+        'User_pass',
+    ];
+
+    public function getAuthPassword()
+    {
+        return $this->User_pass;
+    }
 }
-public $Timestamps = false;
-} 
