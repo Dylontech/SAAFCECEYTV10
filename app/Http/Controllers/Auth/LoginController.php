@@ -3,38 +3,32 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Usuarios;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
+ public function showLoginForm()
+ {
+    Return  view('auth.login');
+ }
 
-    use AuthenticatesUsers;
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function login(Request $request)
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('auth')->only('logout');
+        $credentials = $request->only('User_name','User_pass');
+
+        $user = \App\Models\Usuarios::where('User_name', $credentials['User_name'])->first();
+        if (!$user && Hash::check($credentials['User_pass'], $user->User_pass)) {
+            Auth::guard('usuarios')->login($user);
+            return redirect()->intended('/home');
+    }
+    return back()->withErrors(['User_name'=> 'Las credenciales no son correctas']);
+    }
+    public function logout(Request $request)
+    {
+        Auth::guard('usuarios')->logout();
     }
 }
