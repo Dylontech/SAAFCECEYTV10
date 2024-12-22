@@ -147,27 +147,13 @@ return [
         [
             'text' => 'Home',
             'icon' => 'ti ti-home',
-            'url' => '#',
+            'url' => '/home',
             'hasAnyRole' => ['user']
         ],
         [
             'text' => 'Alta Usuarios',
-            'url' => ' resources/views/vendor/tablar/auth/register',
+            'url' => 'altausuarios',
             'icon' => 'ti ti-help',
-            'submenu' => [
-                [
-                    'text' => 'Ticket',
-                    'url' => '#',
-                    'icon' => 'ti ti-article',
-                     'hasAnyRole' => ['admin']
-                ],
-                [
-                    'text' => 'Create Ticket',
-                    'url' => '#',
-                    'icon' => 'ti ti-article',
-                    'hasAnyPermission' => ['ticket-create']
-                ]
-            ],
         ],
 
     ],
