@@ -21,6 +21,10 @@ class Usuarios extends Authenticatable
     protected $hidden = [
         'User_pass',
     ];
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 
     public function getAuthPassword()
     {

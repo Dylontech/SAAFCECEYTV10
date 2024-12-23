@@ -155,7 +155,11 @@ return [
             'url' => 'altausuarios',
             'icon' => 'ti ti-help',
         ],
-
+        [
+            'text' => 'RolesAsignados',
+            'url' => 'asignar-roles',
+            'icon' => 'ti ti-help',
+        ],
     ],
 
     /*

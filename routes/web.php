@@ -4,6 +4,8 @@ use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\RoleController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,3 +46,6 @@ Route::post('altausuarios', [UsuarioController::class, 'altaUsuarios']);
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+
+Route::get('/asignar-roles', [RoleController::class, 'showAssignRolesForm'])->name('asignar.roles.form');
+Route::post('/asignar-roles', [RoleController::class, 'assignRole'])->name('asignar.roles');

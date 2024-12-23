@@ -25,6 +25,7 @@
             @endif
 
             <a href="{{$setting_url}}" class="dropdown-item">Configuraciones</a>
+
             <a class="dropdown-item"
                href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                 <i class="fa fa-fw fa-power-off text-red"></i>
