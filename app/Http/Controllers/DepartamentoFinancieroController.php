@@ -4,16 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ControlEscolarController extends Controller
+class DepartamentoFinancieroController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('control_escolar');
+        $this->middleware('departamento_financiero');
     }
 
     public function index()
     {
-        return view('control_escolar');
+        return view('departamento_financiero');
     }
 }

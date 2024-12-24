@@ -39,11 +39,17 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'usuarios',  // Esto es para la tabla 'users', puedes dejarlo como está si lo necesitas.
+            'provider' => 'usuarios',
+              // Esto es para la tabla 'users', puedes dejarlo como está si lo necesitas.
+        ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'usuarios',
+            'hash' => false,
         ],
         'usuarios' => [
-            'driver' => 'session',
-            'provider' => 'usuarios',  // Asegúrate de que 'usuarios' esté bien configurado
+            'driver' => 'eloquent',
+            'model' => App\Models\Usuarios::class, // Asegúrate de que 'usuarios' esté bien configurado
         ],
     ],
 

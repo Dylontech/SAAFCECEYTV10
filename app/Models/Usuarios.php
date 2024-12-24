@@ -25,7 +25,23 @@ class Usuarios extends Authenticatable
     {
         return $this->belongsTo(Role::class);
     }
+    public function getIsAdminAttribute()
+    {
+        return $this->role()->where('id', 1)->exists();
+    }
 
+    public function getIsControlEscolarAttribute()
+    {
+        return $this->role()->where('id', 2)->exists();
+    }
+    public function getIsDepartamentoFinancieroAttribute()
+    {
+        return $this->role()->where('id', 3)->exists();
+    }
+    public function getIsAlumnoViewAttribute()
+    {
+        return $this->role()->where('id', 4)->exists();
+    }
     public function getAuthPassword()
     {
         return $this->User_pass;

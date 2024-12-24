@@ -5,6 +5,8 @@ use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\ControlEscolarController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +66,11 @@ Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('us
 // Ruta para mostrar el formulario de alta de usuarios
 Route::get('/alta-usuarios', [UsuarioController::class, 'showAltaUsuariosForm'])->name('altausuarios.form');
 Route::post('/alta-usuarios', [UsuarioController::class, 'altaUsuarios'])->name('altausuarios');
+
+// Ruta para control escolar
+Route::get('/control-escolar', [ControlEscolarController::class, 'index'])->name('control.escolar')->middleware('auth', 'control_escolar');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/control-escolar', [App\Http\Controllers\ControlEscolarController::class, 'index'])->name('control-escolar');
+Route::get('/AlumnoView', [App\Http\Controllers\AlumnoViewController::class, 'index'])->name('AlumnoView');
+Route::get('/departamento-financiero', [App\Http\Controllers\DepartamentoFinancieroController::class, 'index'])->name('departamento-financiero');
