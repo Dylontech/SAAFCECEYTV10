@@ -14,6 +14,30 @@ class RoleController extends Controller
         $roles = Role::all();
         return view('auth.AsignarRoles', compact('users', 'roles'));
     }
+    
+        public function edit($id)
+        {
+            $user = Usuarios::findOrFail($id);
+            $roles = Role::all();
+            return view('usuarios.edit', compact('user', 'roles'));
+        }
+       
+
+    public function update(Request $request, $id)
+    {
+        $user = Usuarios::findOrFail($id);
+        $user->update($request->all());
+
+        return redirect()->route('asignar.roles.form')->with('success', 'Usuario actualizado correctamente.');
+    }
+
+    public function destroy($id)
+    {
+        $user = Usuarios::findOrFail($id);
+        $user->delete();
+
+        return redirect()->route('asignar.roles.form')->with('success', 'Usuario eliminado correctamente.');
+    }
 
     public function assignRole(Request $request)
     {

@@ -32,7 +32,7 @@ Auth::routes();
 
 Route::get('/home', [\App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('/alumno', App\Http\Controllers\AlumnoController::class);
+Route::resource('/alumnos', App\Http\Controllers\AlumnoController::class);
 
 Route::get('login', [LoginController::class, 'showLoginform'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
@@ -48,4 +48,19 @@ Route::get('posts/create', [PostController::class, 'create'])->name('posts.creat
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
 
 Route::get('/asignar-roles', [RoleController::class, 'showAssignRolesForm'])->name('asignar.roles.form');
+Route::post('/asignar-roles', [RoleController::class, 'assignRole'])->name('asignar.roles');Route::resource('/usuario', App\Http\Controllers\UsuarioController::class);
+Route::get('/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+Route::put('/usuarios/{id}', [UsuarioController::class, 'update'])->name('usuarios.update');
+Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+// Rutas para asignar roles
+Route::get('/asignar-roles', [RoleController::class, 'showAssignRolesForm'])->name('asignar.roles.form');
 Route::post('/asignar-roles', [RoleController::class, 'assignRole'])->name('asignar.roles');
+
+// Rutas para usuarios
+Route::get('/usuarios/{id}/edit', [UsuarioController::class, 'edit'])->name('usuarios.edit');
+Route::put('/usuarios/{id}', [UsuarioController::class, 'update'])->name('usuarios.update');
+Route::delete('/usuarios/{id}', [UsuarioController::class, 'destroy'])->name('usuarios.destroy');
+
+// Ruta para mostrar el formulario de alta de usuarios
+Route::get('/alta-usuarios', [UsuarioController::class, 'showAltaUsuariosForm'])->name('altausuarios.form');
+Route::post('/alta-usuarios', [UsuarioController::class, 'altaUsuarios'])->name('altausuarios');
