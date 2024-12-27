@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Alumno;
 use Illuminate\Http\Request;
-
+use App\Models\Usuarios;
+use Illuminate\Support\Facades\Hash;
 /**
  * Class AlumnoController
  * @package App\Http\Controllers
@@ -47,6 +48,15 @@ class AlumnoController extends Controller
 
         $alumno = Alumno::create($request->all());
 
+        // Crear usuario
+        Usuarios::create([
+            'name' => $alumno->Nombre,
+            'User_name' => $alumno->Matricula,
+            'User_tipo' => 'alumno',
+            'User_pass' => Hash::make($alumno->CURP),
+            'role_id' => 4,
+        ]);
+
         return redirect()->route('alumnos.index')
             ->with('success', 'Alumno created successfully.');
     }
@@ -88,7 +98,10 @@ class AlumnoController extends Controller
     {
         request()->validate(Alumno::$rules);
 
-        $alumno->update($request->all());
+        $data = $request->all();
+        $data['Grupo'] = $data['Semestre'] . $data['Grupo'];
+
+        $alumno->update($data);
 
         return redirect()->route('alumnos.index')
             ->with('success', 'Alumno updated successfully');

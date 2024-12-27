@@ -70,6 +70,7 @@ class Kernel extends HttpKernel
             'control_escolar' => \App\Http\Middleware\CheckControlEscolar::class,
             'departamento_financiero' => \App\Http\Middleware\CheckDepartamentoFinanciero::class,
             'alumnoview' => \App\Http\Middleware\CheckAlumnoView::class,
+            'adminview' => \App\Http\Middleware\CheckAdminView::class,
         ];
     
 }

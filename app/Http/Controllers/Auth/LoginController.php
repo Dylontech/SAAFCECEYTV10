@@ -59,7 +59,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
         if (Auth::user()->is_admin) {
-            $this->redirectTo = route('home');
+            $this->redirectTo = route('AdminView');
         } elseif (Auth::user()->is_control_escolar) {
             $this->redirectTo = route('control-escolar');
         } elseif (Auth::user()->is_departamento_financiero) {

@@ -74,3 +74,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/control-escolar', [App\Http\Controllers\ControlEscolarController::class, 'index'])->name('control-escolar');
 Route::get('/AlumnoView', [App\Http\Controllers\AlumnoViewController::class, 'index'])->name('AlumnoView');
 Route::get('/departamento-financiero', [App\Http\Controllers\DepartamentoFinancieroController::class, 'index'])->name('departamento-financiero');
+Route::get('/AdminView', [App\Http\Controllers\AdminViewController::class, 'index'])->name('AdminView');
+Route::resource('/profesores', App\Http\Controllers\ProfesoreController::class);
+Route::resource('/materias', App\Http\Controllers\MateriaController::class);
+
+
+// Rutas para alumnos
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/alumnosolicitudes', [App\Http\Controllers\AlumnoSolicitudesController::class, 'index'])->name('alumnosolicitudes');
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');

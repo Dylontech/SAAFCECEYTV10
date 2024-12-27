@@ -167,12 +167,12 @@ return [
                 ],
                 [
                     'text' => 'Profesores',
-                    'url' => '#',
+                    'url' => 'profesores',
                     'icon' => 'ti ti-list',
                 ],
                 [
                     'text' => 'Materias',
-                    'url' => '#',
+                    'url' => 'materias',
                     'icon' => 'ti ti-list',
                 ],
                 [
