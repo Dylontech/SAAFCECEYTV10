@@ -4,8 +4,8 @@
            aria-label="Abrir menú de usuario">
             <span class="avatar">SE</span>
             <div class="d-none d-xl-block ps-2">
-                <div>{{Auth()->user()->name}}</div>
-                <div class="mt-1 small text-muted">Administrador</div>
+                <div>{{ Auth::user()->name }}</div>
+                <div class="mt-1 small text-muted">{{ Auth::user()->User_tipo }}</div>
             </div>
         </a>
         <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -42,5 +42,4 @@
         </div>
     </div>
 @endauth
-
 

@@ -150,38 +150,7 @@ return [
             'url' => '/home',
             'hasAnyRole' => ['user']
         ],
-        [
-            'text' => 'Usuarios y roles',
-            'url' => 'asignar-roles',
-            'icon' => 'ti ti-help',
-        ],
-        [
-            'text' => 'CRUDS',
-            'url' => '#',
-            'icon' => 'ti ti-user',
-            'submenu' => [
-                [
-                    'text' => 'Alumnos',
-                    'url' => 'alumnos',
-                    'icon' => 'ti ti-list',
-                ],
-                [
-                    'text' => 'Profesores',
-                    'url' => 'profesores',
-                    'icon' => 'ti ti-list',
-                ],
-                [
-                    'text' => 'Materias',
-                    'url' => 'materias',
-                    'icon' => 'ti ti-list',
-                ],
-                [
-                    'text' => 'Matriculas',
-                    'url' => '#',
-                    'icon' => 'ti ti-list',
-                ],
-            ],
-        ],
+    
     ],
 
     /*

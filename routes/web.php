@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\ControlEscolarController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -39,7 +40,7 @@ Route::resource('/alumnos', App\Http\Controllers\AlumnoController::class);
 Route::get('login', [LoginController::class, 'showLoginform'])->name('login');
 Route::post('login', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class,'logout'])->name('logout');
-
+Route::get('/home', [PostController::class, 'index'])->name('home');
 
 Route::get('altausuarios', [UsuarioController::class, 'showAltaUsuariosForm'])->name('altausuarios');
 Route::post('altausuarios', [UsuarioController::class, 'altaUsuarios']);
@@ -48,6 +49,7 @@ Route::post('altausuarios', [UsuarioController::class, 'altaUsuarios']);
 Route::get('/', [PostController::class, 'index'])->name('home');
 Route::get('posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::post('posts', [PostController::class, 'store'])->name('posts.store');
+
 
 Route::get('/asignar-roles', [RoleController::class, 'showAssignRolesForm'])->name('asignar.roles.form');
 Route::post('/asignar-roles', [RoleController::class, 'assignRole'])->name('asignar.roles');Route::resource('/usuario', App\Http\Controllers\UsuarioController::class);
@@ -68,7 +70,7 @@ Route::get('/alta-usuarios', [UsuarioController::class, 'showAltaUsuariosForm'])
 Route::post('/alta-usuarios', [UsuarioController::class, 'altaUsuarios'])->name('altausuarios');
 
 // Ruta para control escolar
-Route::get('/control-escolar', [ControlEscolarController::class, 'index'])->name('control.escolar')->middleware('auth', 'control_escolar');
+
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/control-escolar', [App\Http\Controllers\ControlEscolarController::class, 'index'])->name('control-escolar');
@@ -84,3 +86,17 @@ Route::resource('/materias', App\Http\Controllers\MateriaController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/alumnosolicitudes', [App\Http\Controllers\AlumnoSolicitudesController::class, 'index'])->name('alumnosolicitudes');
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/adminview', function () {
+    return view('adminview');
+})->name('adminview');
+Route::get('/alumnoview', function () {
+    return view('alumnoview');
+})->name('alumnoview');
+Route::get('/control_escolar', function () {
+    return view('control_escolar');
+})->name('control_escolar');
+Route::get('/departamento_financiero', function () {
+    return view('departamento_financiero');
+})->name('departamento_financiero');

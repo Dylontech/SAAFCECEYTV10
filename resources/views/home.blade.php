@@ -11,13 +11,16 @@
                         Bienvenido a SAAFCECEYT
                     </div>
                     <h2 class="page-title">
-                        ADMIN
+                        <div>{{ Auth::user()->name }}</div>
                     </h2>
                 </div>
                 <!-- Page title actions -->
                 <div class="col-12 col-md-auto ms-auto d-print-none">
                     <a href="{{ route('posts.create') }}" class="btn btn-primary">
                         Crear Nuevo Post
+                    </a>
+                    <a href="{{ url()->previous() }}" class="btn btn-secondary">
+                        Regresar
                     </a>
                 </div>
             </div>
@@ -47,11 +50,16 @@
                                     <table class="table table-vcenter">
                                         <thead>
                                             <tr>
-                                                <th>Titulo</th>
+                                                <th>Título</th>
+                                                <th>Contenido</th>
                                                 <th>Fecha de Creación</th>
                                             </tr>
                                         </thead>
+                                        <tbody>
+                                            
+                                        </tbody>
                                     </table>
+                                </div>
                             </div>
                         </div>
                     </div>
