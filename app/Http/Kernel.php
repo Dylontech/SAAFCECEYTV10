@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
             // ...existing code...
+            'role' => \App\Http\Middleware\CheckRole::class,
             'control_escolar' => \App\Http\Middleware\CheckControlEscolar::class,
             'departamento_financiero' => \App\Http\Middleware\CheckDepartamentoFinanciero::class,
             'alumnoview' => \App\Http\Middleware\CheckAlumnoView::class,

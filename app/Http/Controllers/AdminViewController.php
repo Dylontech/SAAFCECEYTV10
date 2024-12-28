@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Blog;
+use App\Http\Controllers\BlogController;
 
 class AdminViewController extends Controller
 {
@@ -13,6 +15,7 @@ class AdminViewController extends Controller
     }
     public function index()
     {
-        return view('AdminView'); // Asegúrate de que la vista exista y esté correctamente nombrada
+        $blogs = Blog::all();
+        return view('AdminView', compact('blogs')); // Pasar los blogs a la vista
     }
 }

@@ -17,8 +17,8 @@
     <p>Bienvenido al panel de Administrador. Aquí puedes gestionar las actividades relacionadas con el Administrador.</p>
     <!-- Botones para navegación -->
     <div class="btn-group" role="group" aria-label="Admin Actions">
-        <a href="{{ route('asignar.roles.form') }}" class="btn btn-primary">Asignar Roles</a>
-        <a href="{{ route('posts.create') }}" class="btn btn-primary">crear post</a>
+        <a href="{{ route('asignar.roles.form') }}" class="btn btn-primary">Usuarios y Roles</a>
+        <a href="{{ route('blogs.create') }}" class="btn btn-primary">Crear Post</a>
         <div class="btn-group" role="group">
             <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 Cruds
@@ -27,8 +27,36 @@
                 <li><a class="dropdown-item" href="{{ route('alumnos.index') }}">Alumno</a></li>
                 <li><a class="dropdown-item" href="{{ route('materias.index') }}">Materia</a></li>
                 <li><a class="dropdown-item" href="{{ route('profesores.index') }}">Profesor</a></li>
+                <li><a class="dropdown-item" href="{{ route('blog.index') }}">blog</a></li>
             </ul>
         </div>
     </div>
+    <div class="mt-4">
+        <h4>Posts Recientes</h4>
+        <div class="card-body">
+        <div class="alert alert-primary">
+        <div class="table-responsive">
+            <table class="table table-vcenter">
+                <thead>
+                    <tr>
+                        <th class="fs-4">Título</th>
+                        <th class="fs-4">Contenido</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($blogs as $blog)
+                    <tr>
+                        <td class="fs-5">{{ $blog->title }}</td>
+                        <td class="fs-5">{{ Str::limit($blog->content, 50) }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+
+            </table>
+        </div>
+        </div>
+        </div>
+    </div>
 </div>
+
 @endsection

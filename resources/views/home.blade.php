@@ -16,7 +16,7 @@
                 </div>
                 <!-- Page title actions -->
                 <div class="col-12 col-md-auto ms-auto d-print-none">
-                    <a href="{{ route('posts.create') }}" class="btn btn-primary">
+                    <a href="{{ route('blog.create') }}" class="btn btn-primary">
                         Crear Nuevo Post
                     </a>
                     <a href="{{ url()->previous() }}" class="btn btn-secondary">

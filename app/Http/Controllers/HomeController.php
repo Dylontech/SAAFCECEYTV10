@@ -12,13 +12,13 @@ class HomeController extends Controller
 
         switch ($user->User_tipo) {
             case 'admin':
-                return redirect()->route('adminview');
+                return redirect()->route('AdminView');
             case 'alumno':
-                return redirect()->route('alumnoview');
+                return redirect()->route('AlumnoView');
             case 'control_escolar':
-                return redirect()->route('control_escolar');
+                return redirect()->route('control-escolar');
             case 'financiero':
-                return redirect()->route('departamento_financiero');
+                return redirect()->route('departamento-financiero');
             default:
                 return view('home');
         }
