@@ -65,7 +65,7 @@ class LoginController extends Controller
         } elseif (Auth::user()->is_departamento_financiero) {
             $this->redirectTo = route('departamento-financiero');
         } elseif (Auth::user()->is_alumno_view) {
-            $this->redirectTo = route('AlumnoView');
+            $this->redirectTo = route('alumnoview');
         } else {
             $this->redirectTo = '/home';
         }

@@ -18,4 +18,25 @@
     <!-- Agrega aquí el contenido específico para el control escolar -->
     <a href="{{ route('alumnosolicitudes') }}" class="btn btn-primary">Ir a Solicitudes de Alumno</a>
 </div>
+    <div>
+<table class="table table-vcenter">
+    <thead>
+        <tr>
+            <th class="fs-4">Título</th>
+            <th class="fs-4">Contenido</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($blogs as $blog)
+        <tr>
+            <td class="fs-5">{{ $blog->title }}</td>
+            <td class="fs-5">{{ Str::limit($blog->content, 50) }}</td>
+        </tr>
+        @endforeach
+    </tbody>
+
+</table>
+</div>
+</div>
+</div>
 @endsection

@@ -39,5 +39,6 @@ class Materia extends Model
     {
         return $this->belongsTo(Profesore::class, 'Materia_profesor');
     }
+    
 
 }

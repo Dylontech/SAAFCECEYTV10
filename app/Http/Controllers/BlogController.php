@@ -111,4 +111,15 @@ class BlogController extends Controller
     $blogs = Blog::all();
     return view('AdminView', compact('blogs'));
 }
+    public function control_escolar()
+{
+    $blogs = Blog::all();
+    return view('control_escolar', compact('blogs'));
+
+}
+public function alumnoview()
+{
+    $blogs = Blog::all();
+    return view('alumnoview', compact('blogs'));
+}
 }

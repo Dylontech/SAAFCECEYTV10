@@ -119,4 +119,22 @@ class AlumnoController extends Controller
         return redirect()->route('alumnos.index')
             ->with('success', 'Alumno deleted successfully');
     }
+    public function reinscripcion($id)
+{
+    $alumno = Alumno::find($id);
+
+    return view('alumnoview.reinscripcion.index', compact('alumno'));
+}
+    public function constancia($id)
+    {
+        $alumno = Alumno::find($id);
+
+        return view('alumnoview.constancia.index', compact('alumno'));
+    }
+public function examen($id)
+    {
+        $alumno = Alumno::find($id);
+
+        return view('alumnoview.examen.index', compact('alumno'));
+    }
 }
