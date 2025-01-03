@@ -3,60 +3,32 @@
 @section('content')
 <div class="container">
     <h2>Reinscripción</h2>
-    <p>Aquí puedes gestionar tu reinscripción.</p>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Campo</th>
-                <th>Información</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Nombre</td>
-                <td>{{ $alumno->Nombre }}</td>
-            </tr>
-            <tr>
-                <td>Correo Electrónico</td>
-                <td>{{ $alumno->email }}</td>
-            </tr>
-            <tr>
-                <td>Matrícula</td>
-                <td>{{ $alumno->Matricula }}</td>
-            </tr>
-            <tr>
-                <td>CURP</td>
-                <td>{{ $alumno->CURP }}</td>
-            </tr>
-            <tr>
-                <td>Grupo</td>
-                <td>{{ $alumno->Grupo }}</td>
-            </tr>
-            <tr>
-                <td>Semestre</td>
-                <td>
-                    <select class="form-control" name="semestre">
-                        <option value="1" {{ $alumno->Semestre == 1 ? 'selected' : '' }}>1</option>
-                        <option value="2" {{ $alumno->Semestre == 2 ? 'selected' : '' }}>2</option>
-                        <option value="3" {{ $alumno->Semestre == 3 ? 'selected' : '' }}>3</option>
-                        <option value="4" {{ $alumno->Semestre == 4 ? 'selected' : '' }}>4</option>
-                        <option value="5" {{ $alumno->Semestre == 5 ? 'selected' : '' }}>5</option>
-                        <option value="6" {{ $alumno->Semestre == 6 ? 'selected' : '' }}>6</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td>Estado del Pago</td>
-                <td>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ $alumno->PagoEstado }}%;" aria-valuenow="{{ $alumno->PagoEstado }}" aria-valuemin="0" aria-valuemax="100">
-                            {{ $alumno->PagoEstado }}%
-                        </div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <form action="{{ route('reinscripcion.store') }}" method="POST">
+        @csrf
+        <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ Auth::user()->name }}" readonly>
+        </div>
+        <div class="form-group">
+            <label for="CURP">CURP:</label>
+            <input type="text" class="form-control" id="CURP" name="CURP" required>
+        </div>
+        <div class="form-group">
+            <label for="matricula">Matricula:</label>
+            <input type="text" class="form-control" id="matricula" name="matricula" required>
+        </div>
+        <div class="form-group">
+            <label for="reinscripcion_semestre">Semestre:</label>
+            <select class="form-control" id="reinscripcion_semestre" name="reinscripcion_semestre" required>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+        </div>
+        <input type="hidden" id="reinscripcion_estatus" name="reinscripcion_estatus" value="pendiente_Validar_Reinscripcion">
+        <button type="submit" class="btn btn-primary">Enviar</button>
+    </form>
 </div>
 @endsection

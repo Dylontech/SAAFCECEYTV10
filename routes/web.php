@@ -13,10 +13,12 @@ use App\Http\Controllers\AdminViewController;
 use App\Http\Controllers\ProfesoreController;
 use App\Http\Controllers\MateriaController;
 use App\Http\Controllers\AlumnoSolicitudesController;
-use App\Http\Controllers\ExamController;
-use App\Http\Controllers\ServiciosController;
+use App\Http\Controllers\ExamenController;
 use App\Http\Controllers\ConEscSolicitudesController;
+use App\Http\Controllers\ConstanciasController;
 use App\Http\Controllers\FinancieroSolicitudesController;
+use App\Http\Controllers\ReinscripcionController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,21 +63,15 @@ Route::middleware(['role:alumno'])->group(function () {
     Route::get('/alumnoview', function () {
         return view('alumnoview');
     })->name('AlumnoView');
-    Route::get('/alumnosolicitudes', [AlumnoSolicitudesController::class, 'index'])->name('alumnosolicitudes');
-    Route::get('/reinscripcion', function () {
-        return view('alumnoview.reinscripcion.index');
-    });
-    Route::get('/reinscripcion/{id}/index', [AlumnoController::class, 'reinscripcion'])->name('alumnoview.reinscripcion.index');
-    Route::get('/constancia2/{id}', [AlumnoController::class, 'constancia'])->name('alumnoview.constancia.index');
-    Route::get('/examen/{id}', [AlumnoController::class, 'examen'])->name('alumnoview.examen.index');
-    Route::get('/examen/{id}/index', [AlumnoController::class, 'examen'])->name('alumnoview.examen.index');
-    Route::get('/alumnoview/examen/create', [ExamController::class, 'create'])->name('exams.create');
-    Route::post('examen/store', [ExamController::class, 'store'])->name('examen.store');
-    Route::get('examen/getMateriasByProfesor', [ExamController::class, 'getMateriasByProfesor'])->name('examen.getMateriasByProfesor');
-    Route::get('examen/getProfesoresByMateria', [ExamController::class, 'getProfesoresByMateria'])->name('examen.getProfesoresByMateria');
-    Route::get('services', [ServiciosController::class, 'create'])->name('services.create');
-    Route::post('services', [ServiciosController::class, 'store'])->name('services.store');
+    Route::get('alumnoview', [ExamenController::class, 'create'])->name('examen.create');
+    Route::get('/examen', [ExamenController::class, 'index'])->name('examen.index');
+    Route::post('/examen', [ExamenController::class, 'store'])->name('examen.store'); // Add this line
+    Route::post('/reinscripcion', [ReinscripcionController::class, 'store'])->name('reinscripcion.store');
+    Route::get('/reinscripcion', [ReinscripcionController::class, 'reinscripcion'])->name('reinscripcion.index');
+    Route::get('/constancias', [ConstanciasController::class, 'constancias'])->name('constancias.index');
+    Route::post('/constancias', [ConstanciasController::class, 'store'])->name('constancias.store');
     Route::resource('/blogs', BlogController::class);
+    Route::get('/constancias', [ConstanciasController::class, 'constancias'])->name('constancia.index');
     Route::get('/alumnoview', [BlogController::class, 'alumnoview'])->name('alumnoview');
 });
 

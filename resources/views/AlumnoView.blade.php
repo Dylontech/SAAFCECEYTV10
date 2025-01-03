@@ -15,8 +15,10 @@
             </div>
     <h2>Panel de Alumno</h2>
     <p>Bienvenido al panel de Alumno. Aquí puedes gestionar las actividades relacionadas con el Alumno.</p>
-    <!-- Agrega aquí el contenido específico para el control escolar -->
-    <a href="{{ route('alumnosolicitudes') }}" class="btn btn-primary">Ir a Solicitudes de Alumno</a>
+    <!-- Botones para navegación -->
+    <a href="{{ route('constancia.index') }}" class="btn btn-primary">Ir a Servicios</a>
+    <a href="{{ route('examen.index') }}" class="btn btn-primary">Ir a Crear Examen</a>
+    <a href="{{ route('reinscripcion.index') }}" class="btn btn-primary">Ir a Reinscripción</a>
 </div>
     <div>
 <table class="table table-vcenter">

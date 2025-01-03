@@ -14,7 +14,7 @@ class HomeController extends Controller
             case 'admin':
                 return redirect()->route('AdminView');
             case 'alumno':
-                return redirect()->route('AlumnoView');
+                return redirect()->route('alumnoview');
             case 'control_escolar':
                 return redirect()->route('control-escolar');
             case 'financiero':
