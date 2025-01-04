@@ -15,7 +15,7 @@
         </div>
         <div class="form-group">
             <label for="matricula">Matricula:</label>
-            <input type="text" class="form-control" id="matricula" name="matricula" required>
+            <input type="text" class="form-control" id="matricula" name="matricula" value="{{ Auth::user()->User_name }}" readonly>
         </div>
         <div class="form-group">
             <label for="reinscripcion_semestre">Semestre:</label>

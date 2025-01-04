@@ -18,9 +18,9 @@ class Examen extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'profesor_id',
-        'materia_id',
-        'alumno_id',
+        'profesor',
+        'materia',
+        'alumno',
         'CURP',
         'matricula',
         'examen_estatus',

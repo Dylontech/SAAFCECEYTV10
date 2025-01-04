@@ -18,7 +18,8 @@ use App\Http\Controllers\ConEscSolicitudesController;
 use App\Http\Controllers\ConstanciasController;
 use App\Http\Controllers\FinancieroSolicitudesController;
 use App\Http\Controllers\ReinscripcionController;
-
+use App\Models\Pendiente;
+use App\Http\Controllers\PendienteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,6 +74,9 @@ Route::middleware(['role:alumno'])->group(function () {
     Route::resource('/blogs', BlogController::class);
     Route::get('/constancias', [ConstanciasController::class, 'constancias'])->name('constancia.index');
     Route::get('/alumnoview', [BlogController::class, 'alumnoview'])->name('alumnoview');
+    Route::get('/pendiente', [PendienteController::class, 'pendiente'])->name('pendiente.index');
+    Route::get('/pagos-en-tramite', [PendienteController::class, 'pagosEnTramite']);
+    
 });
 
 Route::middleware(['role:control_escolar'])->group(function () {

@@ -16,9 +16,10 @@
     <h2>Panel de Alumno</h2>
     <p>Bienvenido al panel de Alumno. Aquí puedes gestionar las actividades relacionadas con el Alumno.</p>
     <!-- Botones para navegación -->
-    <a href="{{ route('constancia.index') }}" class="btn btn-primary">Ir a Servicios</a>
-    <a href="{{ route('examen.index') }}" class="btn btn-primary">Ir a Crear Examen</a>
-    <a href="{{ route('reinscripcion.index') }}" class="btn btn-primary">Ir a Reinscripción</a>
+    <a href="{{ route('constancia.index') }}" class="btn btn-primary">Solicitar Pago Servicios</a>
+    <a href="{{ route('examen.index') }}" class="btn btn-primary">Solicitar Pago de Examen</a>
+    <a href="{{ route('reinscripcion.index') }}" class="btn btn-primary">Solicitar Pago Reinscripción</a>
+    <a href="{{ route('pendiente.index') }}" class="btn btn-primary">En tramite</a>
 </div>
     <div>
 <table class="table table-vcenter">
