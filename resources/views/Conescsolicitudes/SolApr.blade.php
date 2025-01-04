@@ -33,7 +33,6 @@
                 <th>Matrícula</th>
                 <th>Semestre</th>
                 <th>Estatus</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -44,18 +43,6 @@
                     <td>{{ $reinscripcion->matricula }}</td>
                     <td>{{ $reinscripcion->reinscripcion_semestre }}</td>
                     <td>{{ $reinscripcion->reinscripcion_estatus }}</td>
-                    <td>
-                        <form action="{{ route('reinscripcion.approve', $reinscripcion->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success">Aprobar</button>
-                        </form>
-                        <form action="{{ route('reinscripcion.reject', $reinscripcion->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Rechazar</button>
-                        </form>
-                    </td>
                 </tr>
             @empty
                 <tr>
@@ -74,7 +61,6 @@
                 <th>Matrícula</th>
                 <th>Tipo de Constancia</th>
                 <th>Estatus</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -85,18 +71,6 @@
                     <td>{{ $constancia->matricula }}</td>
                     <td>{{ $constancia->constancia_tipo }}</td>
                     <td>{{ $constancia->constancia_estatus }}</td>
-                    <td>
-                        <form action="{{ route('constancia.approve', $constancia->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success">Aprobar</button>
-                        </form>
-                        <form action="{{ route('constancia.reject', $constancia->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Rechazar</button>
-                        </form>
-                    </td>
                 </tr>
             @empty
                 <tr>
@@ -115,7 +89,6 @@
                 <th>Matrícula</th>
                 <th>Tipo de Examen</th>
                 <th>Estatus</th>
-                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -126,18 +99,6 @@
                     <td>{{ $examen->matricula }}</td>
                     <td>{{ $examen->examen_tipo }}</td>
                     <td>{{ $examen->examen_estatus }}</td>
-                    <td>
-                        <form action="{{ route('examen.approve', $examen->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('PUT')
-                            <button type="submit" class="btn btn-success">Aprobar</button>
-                        </form>
-                        <form action="{{ route('examen.reject', $examen->id) }}" method="POST" style="display:inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Rechazar</button>
-                        </form>
-                    </td>
                 </tr>
             @empty
                 <tr>

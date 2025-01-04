@@ -89,6 +89,16 @@ Route::middleware(['role:control_escolar'])->group(function () {
     route::get('/blog.index', [BlogController::class, 'index'])->name('blog.index');
     Route::get('/control_escolar', [BlogController::class, 'control_escolar'])->name('control-escolar');
     Route::get('/conescsolicitudes.index', [ConEscSolicitudesController::class, 'index'])->name('conescsolicitudes.index');
+    Route::get('/conescsolicitudes', [ConEscSolicitudesController::class, 'conescpendiente'])->name('conescsolicitudes');
+    Route::put('/reinscripcion/{id}/approve', [ConEscSolicitudesController::class, 'approveReinscripcion'])->name('reinscripcion.approve');
+Route::delete('/reinscripcion/{id}/reject', [ConEscSolicitudesController::class, 'rejectReinscripcion'])->name('reinscripcion.reject');
+
+Route::put('/constancia/{id}/approve', [ConEscSolicitudesController::class, 'approveConstancia'])->name('constancia.approve');
+Route::delete('/constancia/{id}/reject', [ConEscSolicitudesController::class, 'rejectConstancia'])->name('constancia.reject');
+
+Route::put('/examen/{id}/approve', [ConEscSolicitudesController::class, 'approveExamen'])->name('examen.approve');
+Route::delete('/examen/{id}/reject', [ConEscSolicitudesController::class, 'rejectExamen'])->name('examen.reject');
+Route::get('/conescsolicitudes/solapr', [ConescsolicitudesController::class, 'solapr'])->name('conescsolicitudes.solapr');
 });
 
 Route::middleware(['role:financiero'])->group(function () {
@@ -97,6 +107,17 @@ Route::middleware(['role:financiero'])->group(function () {
     })->name('departamento-financiero');
     Route::get('/financierosolicitudes.index', [FinancieroSolicitudesController::class, 'index'])->name('financierosolicitudes.index');
     Route::get('/financierosolicitudes.reporte', [FinancieroSolicitudesController::class, 'reporte'])->name('financierosolicitudes.reporte');
+    
+    Route::put('/constancia/{id}/approve', [FinancieroSolicitudesController::class, 'approveConstancia'])->name('constancia.approve');
+    Route::delete('/constancia/{id}/reject', [FinancieroSolicitudesController::class, 'rejectConstancia'])->name('constancia.reject');
+    
+    Route::put('/examen/{id}/approve', [FinancieroSolicitudesController::class, 'approveExamen'])->name('examen.approve');
+    Route::delete('/examen/{id}/reject', [FinancieroSolicitudesController::class, 'rejectExamen'])->name('examen.reject');
+    
+    Route::put('/reinscripcion/{id}/approve', [FinancieroSolicitudesController::class, 'approveReinscripcion'])->name('reinscripcion.approve');
+    Route::delete('/reinscripcion/{id}/reject', [FinancieroSolicitudesController::class, 'rejectReinscripcion'])->name('reinscripcion.reject');
+ Route::delete('/reinscripcion/{id}/reject', [ConEscSolicitudesController::class, 'rejectReinscripcion'])->name('reinscripcion.reject');
+ Route::get('/financierosolicitudes.aprobadas', [FinancieroSolicitudesController::class, 'aprobadas'])->name('financierosolicitudes.aprobadas');
 });
 
 // Rutas públicas
