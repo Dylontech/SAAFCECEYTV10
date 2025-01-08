@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('matricula');
             $table->string('examen_estatus');
             $table->string('examen_tipo');
+            $table->binary('examen_archivo_foto');
+            $table->binary('examen_archivo_resivo');
             $table->timestamps();
         });
     }

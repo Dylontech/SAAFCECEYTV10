@@ -45,12 +45,12 @@
                     <td>{{ $reinscripcion->reinscripcion_semestre }}</td>
                     <td>{{ $reinscripcion->reinscripcion_estatus }}</td>
                     <td>
-                        <form action="{{ route('reinscripcion.approve', $reinscripcion->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('financiero.reinscripcion.approve', $reinscripcion->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success">Aprobado</button>
                         </form>
-                        <form action="{{ route('reinscripcion.reject', $reinscripcion->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('financiero.reinscripcion.reject', $reinscripcion->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Rechazar</button>
@@ -86,12 +86,12 @@
                     <td>{{ $constancia->constancia_tipo }}</td>
                     <td>{{ $constancia->constancia_estatus }}</td>
                     <td>
-                        <form action="{{ route('constancia.approve', $constancia->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('financiero.constancia.approve', $constancia->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success">Aprobado</button>
                         </form>
-                        <form action="{{ route('constancia.reject', $constancia->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('financiero.constancia.reject', $constancia->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Rechazar</button>
@@ -127,12 +127,12 @@
                     <td>{{ $examen->examen_tipo }}</td>
                     <td>{{ $examen->examen_estatus }}</td>
                     <td>
-                        <form action="{{ route('examen.approve', $examen->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('financiero.examen.approve', $examen->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success">Aprobado</button>
                         </form>
-                        <form action="{{ route('examen.reject', $examen->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('financiero.examen.reject', $examen->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Rechazar</button>

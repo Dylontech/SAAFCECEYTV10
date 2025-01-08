@@ -22,62 +22,64 @@ class FinancieroSolicitudesController extends Controller
     {
         return view('financierosolicitudes.reporte');
     }
+
     public function approveConstancia($id)
-{
-    $constancia = Constancia::findOrFail($id);
-    $constancia->constancia_estatus = 'aprobado_constancia_financiero';
-    $constancia->save();
+    {
+        $constancia = Constancia::findOrFail($id);
+        $constancia->constancia_estatus = 'aprobado_constancia_financiero';
+        $constancia->save();
 
-    return redirect()->route('conescsolicitudes.index');
-}
+        return redirect()->route('financierosolicitudes.index');
+    }
 
-public function rejectConstancia($id)
-{
-    $constancia = Constancia::findOrFail($id);
-    $constancia->delete();
+    public function rejectConstancia($id)
+    {
+        $constancia = Constancia::findOrFail($id);
+        $constancia->delete();
 
-    return redirect()->route('conescsolicitudes.index');
-}
+        return redirect()->route('financierosolicitudes.index');
+    }
 
-public function approveExamen($id)
-{
-    $examen = Examen::findOrFail($id);
-    $examen->examen_estatus = 'aprobado_examen_financiero';
-    $examen->save();
+    public function approveExamen($id)
+    {
+        $examen = Examen::findOrFail($id);
+        $examen->examen_estatus = 'aprobado_examen_financiero';
+        $examen->save();
 
-    return redirect()->route('conescsolicitudes.index');
-}
+        return redirect()->route('financierosolicitudes.index');
+    }
 
-public function rejectExamen($id)
-{
-    $examen = Examen::findOrFail($id);
-    $examen->delete();
+    public function rejectExamen($id)
+    {
+        $examen = Examen::findOrFail($id);
+        $examen->delete();
 
-    return redirect()->route('conescsolicitudes.index');
-}
+        return redirect()->route('financierosolicitudes.index');
+    }
 
-public function approveReinscripcion($id)
-{
-    $reinscripcion = Reinscripcion::findOrFail($id);
-    $reinscripcion->reinscripcion_estatus = 'aprobado_reinscripcion_financiero';
-    $reinscripcion->save();
+    public function approveReinscripcion($id)
+    {
+        $reinscripcion = Reinscripcion::findOrFail($id);
+        $reinscripcion->reinscripcion_estatus = 'aprobado_reinscripcion_financiero';
+        $reinscripcion->save();
 
-    return redirect()->route('conescsolicitudes.index');
-}
+        return redirect()->route('financierosolicitudes.index');
+    }
 
-public function rejectReinscripcion($id)
-{
-    $reinscripcion = Reinscripcion::findOrFail($id);
-    $reinscripcion->delete();
+    public function rejectReinscripcion($id)
+    {
+        $reinscripcion = Reinscripcion::findOrFail($id);
+        $reinscripcion->delete();
 
-    return redirect()->route('conescsolicitudes.index');
-}
-public function aprobadas()
-{
-    $reinscripciones = Reinscripcion::where('reinscripcion_estatus', 'aprobado_reinscripcion_financiero')->get();
-    $constancias = Constancia::where('constancia_estatus', 'aprobado_constancia_financiero')->get();
-    $examenes = Examen::where('examen_estatus', 'aprobado_examen_financiero')->get();
-    
-    return view('financierosolicitudes.aprobadas', compact('reinscripciones', 'constancias', 'examenes'));
-}
+        return redirect()->route('financierosolicitudes.index');
+    }
+
+    public function aprobadas()
+    {
+        $reinscripciones = Reinscripcion::where('reinscripcion_estatus', 'aprobado_reinscripcion_financiero')->get();
+        $constancias = Constancia::where('constancia_estatus', 'aprobado_constancia_financiero')->get();
+        $examenes = Examen::where('examen_estatus', 'aprobado_examen_financiero')->get();
+        
+        return view('financierosolicitudes.aprobadas', compact('reinscripciones', 'constancias', 'examenes'));
+    }
 }

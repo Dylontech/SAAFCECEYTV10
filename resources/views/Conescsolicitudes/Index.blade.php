@@ -17,7 +17,8 @@
                             <tr>
                                 <td>
                                     <a href="{{ route('conescsolicitudes.index') }}" class="btn btn-warning">Solicitudes Pendientes</a>
-                                    <a href="{{ route('conescsolicitudes.solapr') }}" class="btn btn-success">Solicitudes Aprobadas</a><button class="btn btn-primary">Generar Reportes</button>
+                                    <a href="{{ route('conescsolicitudes.solapr') }}" class="btn btn-success">Solicitudes Aprobadas</a>
+                                    <button class="btn btn-primary">Generar Reportes</button>
                                 </td>
                             </tr>
                         </tbody>
@@ -45,16 +46,26 @@
                     <td>{{ $reinscripcion->reinscripcion_semestre }}</td>
                     <td>{{ $reinscripcion->reinscripcion_estatus }}</td>
                     <td>
-                        <form action="{{ route('reinscripcion.approve', $reinscripcion->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('conesc.reinscripcion.approve', $reinscripcion->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success">Aprobar</button>
                         </form>
-                        <form action="{{ route('reinscripcion.reject', $reinscripcion->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('conesc.reinscripcion.reject', $reinscripcion->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Rechazar</button>
                         </form>
+                        @if($reinscripcion->reinscripcion_estatus == 'aprobado_reinscripcion_financiero')
+                            <form action="{{ route('upload.reinscripcion', $reinscripcion->id) }}" method="POST" enctype="multipart/form-data" style="display:inline;">
+                                @csrf
+                                <input type="file" name="reinscripcion_archivo_foto" required>
+                                <button type="submit" class="btn btn-info">Subir</button>
+                            </form>
+                        @endif
+                        @if($reinscripcion->reinscripcion_archivo_foto)
+                            <a href="{{ route('download.reinscripcion', $reinscripcion->id) }}" class="btn btn-secondary">Descargar</a>
+                        @endif
                     </td>
                 </tr>
             @empty
@@ -86,16 +97,26 @@
                     <td>{{ $constancia->constancia_tipo }}</td>
                     <td>{{ $constancia->constancia_estatus }}</td>
                     <td>
-                        <form action="{{ route('constancia.approve', $constancia->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('conesc.constancia.approve', $constancia->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success">Aprobar</button>
                         </form>
-                        <form action="{{ route('constancia.reject', $constancia->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('conesc.constancia.reject', $constancia->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Rechazar</button>
                         </form>
+                        @if($constancia->constancia_estatus == 'aprobado_constancia_financiero')
+                            <form action="{{ route('upload.constancia', $constancia->id) }}" method="POST" enctype="multipart/form-data" style="display:inline;">
+                                @csrf
+                                <input type="file" name="constancia_archivo_foto" required>
+                                <button type="submit" class="btn btn-info">Subir</button>
+                            </form>
+                        @endif
+                        @if($constancia->constancia_archivo_foto)
+                            <a href="{{ route('download.constancia', $constancia->id) }}" class="btn btn-secondary">Descargar</a>
+                        @endif
                     </td>
                 </tr>
             @empty
@@ -127,16 +148,26 @@
                     <td>{{ $examen->examen_tipo }}</td>
                     <td>{{ $examen->examen_estatus }}</td>
                     <td>
-                        <form action="{{ route('examen.approve', $examen->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('conesc.examen.approve', $examen->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('PUT')
                             <button type="submit" class="btn btn-success">Aprobar</button>
                         </form>
-                        <form action="{{ route('examen.reject', $examen->id) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('conesc.examen.reject', $examen->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Rechazar</button>
                         </form>
+                        @if($examen->examen_estatus == 'aprobado_examen_financiero')
+                            <form action="{{ route('upload.examen', $examen->id) }}" method="POST" enctype="multipart/form-data" style="display:inline;">
+                                @csrf
+                                <input type="file" name="examen_archivo_foto" required>
+                                <button type="submit" class="btn btn-info">Subir</button>
+                            </form>
+                        @endif
+                        @if($examen->examen_archivo_foto)
+                            <a href="{{ route('download.examen', $examen->id) }}" class="btn btn-secondary">Descargar</a>
+                        @endif
                     </td>
                 </tr>
             @empty

@@ -25,6 +25,8 @@ class Examen extends Model
         'matricula',
         'examen_estatus',
         'examen_tipo',
+        'examen_archivo_foto',
+        'examen_archivo_resivo',
     ];
 
     /**

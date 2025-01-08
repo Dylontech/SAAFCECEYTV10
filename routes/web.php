@@ -20,7 +20,7 @@ use App\Http\Controllers\FinancieroSolicitudesController;
 use App\Http\Controllers\ReinscripcionController;
 use App\Models\Pendiente;
 use App\Http\Controllers\PendienteController;
-
+use App\Http\Controllers\ArchivoController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -77,48 +77,19 @@ Route::middleware(['role:alumno'])->group(function () {
     Route::get('/pendiente', [PendienteController::class, 'pendiente'])->name('pendiente.index');
     Route::get('/pagos-en-tramite', [PendienteController::class, 'pagosEnTramite']);
     
+
+
+Route::post('/upload/reinscripcion/{id}', [ArchivoController::class, 'uploadReinscripcion'])->name('upload.reinscripcion');
+Route::get('/download/reinscripcion/{id}', [ArchivoController::class, 'downloadReinscripcion'])->name('download.reinscripcion');
+
+Route::post('/upload/constancia/{id}', [ArchivoController::class, 'uploadConstancia'])->name('upload.constancia');
+Route::get('/download/constancia/{id}', [ArchivoController::class, 'downloadConstancia'])->name('download.constancia');
+
+Route::post('/upload/examen/{id}', [ArchivoController::class, 'uploadExamen'])->name('upload.examen');
+Route::get('/download/examen/{id}', [ArchivoController::class, 'downloadExamen'])->name('download.examen');
 });
 
-Route::middleware(['role:control_escolar'])->group(function () {
-    Route::get('/control_escolar', function () {
-        return view('control_escolar');
-    })->name('control-escolar');
-    Route::resource('/profesores', App\Http\Controllers\ProfesoreController::class);
-    Route::resource('/materias', App\Http\Controllers\MateriaController::class);
-    Route::resource('/blogs', BlogController::class);
-    route::get('/blog.index', [BlogController::class, 'index'])->name('blog.index');
-    Route::get('/control_escolar', [BlogController::class, 'control_escolar'])->name('control-escolar');
-    Route::get('/conescsolicitudes.index', [ConEscSolicitudesController::class, 'index'])->name('conescsolicitudes.index');
-    Route::get('/conescsolicitudes', [ConEscSolicitudesController::class, 'conescpendiente'])->name('conescsolicitudes');
-    Route::put('/reinscripcion/{id}/approve', [ConEscSolicitudesController::class, 'approveReinscripcion'])->name('reinscripcion.approve');
-Route::delete('/reinscripcion/{id}/reject', [ConEscSolicitudesController::class, 'rejectReinscripcion'])->name('reinscripcion.reject');
 
-Route::put('/constancia/{id}/approve', [ConEscSolicitudesController::class, 'approveConstancia'])->name('constancia.approve');
-Route::delete('/constancia/{id}/reject', [ConEscSolicitudesController::class, 'rejectConstancia'])->name('constancia.reject');
-
-Route::put('/examen/{id}/approve', [ConEscSolicitudesController::class, 'approveExamen'])->name('examen.approve');
-Route::delete('/examen/{id}/reject', [ConEscSolicitudesController::class, 'rejectExamen'])->name('examen.reject');
-Route::get('/conescsolicitudes/solapr', [ConescsolicitudesController::class, 'solapr'])->name('conescsolicitudes.solapr');
-});
-
-Route::middleware(['role:financiero'])->group(function () {
-    Route::get('/departamento_financiero', function () {
-        return view('departamento_financiero');
-    })->name('departamento-financiero');
-    Route::get('/financierosolicitudes.index', [FinancieroSolicitudesController::class, 'index'])->name('financierosolicitudes.index');
-    Route::get('/financierosolicitudes.reporte', [FinancieroSolicitudesController::class, 'reporte'])->name('financierosolicitudes.reporte');
-    
-    Route::put('/constancia/{id}/approve', [FinancieroSolicitudesController::class, 'approveConstancia'])->name('constancia.approve');
-    Route::delete('/constancia/{id}/reject', [FinancieroSolicitudesController::class, 'rejectConstancia'])->name('constancia.reject');
-    
-    Route::put('/examen/{id}/approve', [FinancieroSolicitudesController::class, 'approveExamen'])->name('examen.approve');
-    Route::delete('/examen/{id}/reject', [FinancieroSolicitudesController::class, 'rejectExamen'])->name('examen.reject');
-    
-    Route::put('/reinscripcion/{id}/approve', [FinancieroSolicitudesController::class, 'approveReinscripcion'])->name('reinscripcion.approve');
-    Route::delete('/reinscripcion/{id}/reject', [FinancieroSolicitudesController::class, 'rejectReinscripcion'])->name('reinscripcion.reject');
- Route::delete('/reinscripcion/{id}/reject', [ConEscSolicitudesController::class, 'rejectReinscripcion'])->name('reinscripcion.reject');
- Route::get('/financierosolicitudes.aprobadas', [FinancieroSolicitudesController::class, 'aprobadas'])->name('financierosolicitudes.aprobadas');
-});
 
 // Rutas públicas
 Route::get('login', [LoginController::class, 'showLoginform'])->name('login');

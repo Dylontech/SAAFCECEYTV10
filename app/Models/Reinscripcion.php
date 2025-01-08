@@ -14,5 +14,7 @@ class Reinscripcion extends Model
         'matricula',
         'reinscripcion_semestre',
         'reinscripcion_estatus',
+        'reinscripcion_archivo_foto',
+        'reinscripcion_archivo_resivo',
     ];   
 }

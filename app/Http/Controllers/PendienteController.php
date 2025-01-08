@@ -18,18 +18,30 @@ class PendienteController extends Controller
     public function pendiente()
     {
         $user = Auth::user();
-        $reinscripciones = Reinscripcion::where('matricula', $user->User_name)
+        $reinscripcionesPendientes = Reinscripcion::where('matricula', $user->User_name)
             ->where('reinscripcion_estatus', 'pendiente_validar_Reinscripcion')
             ->get();
 
-        $constancias = Constancia::where('matricula', $user->User_name)
+        $constanciasPendientes = Constancia::where('matricula', $user->User_name)
             ->where('constancia_estatus', 'pendiente_validar_constancia')
             ->get();
             
-        $examenes = Examen::where('matricula', $user->User_name)
+        $examenesPendientes = Examen::where('matricula', $user->User_name)
             ->where('examen_estatus', 'pendiente_validar_examen')
             ->get();
 
-        return view('alumnoview.pendiente.index', compact('reinscripciones', 'constancias', 'examenes'));
+        $reinscripcionesAprobadas = Reinscripcion::where('matricula', $user->User_name)
+            ->where('reinscripcion_estatus', 'aprobado_reinscripcion_financiero')
+            ->get();
+
+        $constanciasAprobadas = Constancia::where('matricula', $user->User_name)
+            ->where('constancia_estatus', 'aprobado_constancia_financiero')
+            ->get();
+            
+        $examenesAprobadas = Examen::where('matricula', $user->User_name)
+            ->where('examen_estatus', 'aprobado_examen_financiero')
+            ->get();
+
+        return view('alumnoview.pendiente.index', compact('reinscripcionesPendientes', 'constanciasPendientes', 'examenesPendientes', 'reinscripcionesAprobadas', 'constanciasAprobadas', 'examenesAprobadas'));
     }
 }

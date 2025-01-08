@@ -35,7 +35,7 @@ class ConEscSolicitudesController extends Controller
         return view('ConEscSolicitudes.index', compact('reinscripciones', 'constancias', 'examenes'));
     }
 
-    public function approveReinscripcion($id)
+    public function approveReinscripcionConEsc($id)
     {
         $reinscripcion = Reinscripcion::findOrFail($id);
         $reinscripcion->reinscripcion_estatus = 'pendiente_reinscripcion_financiero';
@@ -44,7 +44,7 @@ class ConEscSolicitudesController extends Controller
         return redirect()->route('conescsolicitudes.index');
     }
 
-    public function rejectReinscripcion($id)
+    public function rejectReinscripcionConEsc($id)
     {
         $reinscripcion = Reinscripcion::findOrFail($id);
         $reinscripcion->delete();
@@ -52,7 +52,7 @@ class ConEscSolicitudesController extends Controller
         return redirect()->route('conescsolicitudes.index');
     }
 
-    public function approveConstancia($id)
+    public function approveConstanciaConEsc($id)
     {
         $constancia = Constancia::findOrFail($id);
         $constancia->constancia_estatus = 'pendiente_constancia_financiero';
@@ -61,7 +61,7 @@ class ConEscSolicitudesController extends Controller
         return redirect()->route('conescsolicitudes.index');
     }
 
-    public function rejectConstancia($id)
+    public function rejectConstanciaConEsc($id)
     {
         $constancia = Constancia::findOrFail($id);
         $constancia->delete();
@@ -69,7 +69,7 @@ class ConEscSolicitudesController extends Controller
         return redirect()->route('conescsolicitudes.index');
     }
 
-    public function approveExamen($id)
+    public function approveExamenConEsc($id)
     {
         $examen = Examen::findOrFail($id);
         $examen->examen_estatus = 'pendiente_examen_financiero';
@@ -78,13 +78,14 @@ class ConEscSolicitudesController extends Controller
         return redirect()->route('conescsolicitudes.index');
     }
 
-    public function rejectExamen($id)
+    public function rejectExamenConEsc($id)
     {
         $examen = Examen::findOrFail($id);
         $examen->delete();
 
         return redirect()->route('conescsolicitudes.index');
     }
+
     public function solapr()
     {
         $reinscripciones = Reinscripcion::where('reinscripcion_estatus', 'pendiente_reinscripcion_financiero')->get();
