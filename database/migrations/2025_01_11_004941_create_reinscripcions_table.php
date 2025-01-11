@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('constancias', function (Blueprint $table) {
+        Schema::create('reinscripcions', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('CURP')->constrained('alumnos');
             $table->string('matricula')->constrained('alumnos');
-            $table->string('constancia_tipo');
-            $table->string('constancia_estatus');
-            $table->binary('constancia_archivo_foto');
-            $table->binary('constancia_archivo_resivo');
+            $table->string('reinscripcion_semestre');
+            $table->string('reinscripcion_estatus');
+            $table->binary('reinscripcion_archivo_foto')->nullable();
+            $table->binary('reinscripcion_archivo_resivo')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('constancias');
+        Schema::dropIfExists('reinscripcions');
     }
 };
